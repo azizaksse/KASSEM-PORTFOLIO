@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Performance optimizations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+}
+
+/* Accessibility improvements */
+.keyboard-navigation *:focus {
+  outline: 2px solid rgba(56, 189, 248, 0.8);
+  outline-offset: 2px;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Reduced animations class for performance optimization */
+.reduced-animations * {
+  animation-duration: 0.1s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.1s !important;
+}
+
+.reduced-animations .glass {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .glass {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(0, 0, 0, 0.9);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.08), transparent 55%),
+    radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.1), transparent 60%),
+    linear-gradient(180deg, #050816 0%, #020510 100%);
+  color: #e2e8f0;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  letter-spacing: -0.01em;
+  /* Performance optimizations */
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml;utf8,\
+  <svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'>\
+  <rect fill='none' width='160' height='160'/>\
+  <g fill='rgba(226,232,240,0.12)'>\
+  <circle cx='10' cy='10' r='1'/>\
+  <circle cx='80' cy='40' r='1'/>\
+  <circle cx='140' cy='90' r='1'/>\
+  <circle cx='30' cy='120' r='1'/>\
+  </g></svg>");
+}
+
+::selection {
+  background: rgba(56, 189, 248, 0.35);
+  color: #f8fafc;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.glass {
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: linear-gradient(
+      150deg,
+      rgba(9, 13, 23, 0.86),
+      rgba(21, 27, 41, 0.66)
+    )
+    border-box;
+  box-shadow:
+    inset 0 0 0 0 rgba(255, 255, 255, 0.08),
+    0 28px 90px -45px rgba(56, 189, 248, 0.45),
+    0 45px 140px -60px rgba(46, 91, 255, 0.35);
+  backdrop-filter: blur(34px);
+  -webkit-backdrop-filter: blur(34px);
+}
+
+/* Subtle glass effect for less important elements */
+.glass-subtle {
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  background: rgba(9, 13, 23, 0.4);
+  box-shadow: 0 8px 32px -8px rgba(56, 189, 248, 0.2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Strong glass effect for key elements */
+.glass-strong {
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: linear-gradient(
+      150deg,
+      rgba(9, 13, 23, 0.9),
+      rgba(21, 27, 41, 0.8)
+    )
+    border-box;
+  box-shadow:
+    inset 0 0 0 0 rgba(255, 255, 255, 0.12),
+    0 32px 100px -50px rgba(56, 189, 248, 0.6),
+    0 50px 150px -70px rgba(46, 91, 255, 0.4);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+}
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
